@@ -50,12 +50,12 @@ class Twitter:
                 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, next_css)))
                 btn_next = driver.find_element(By.CSS_SELECTOR, next_css)
 
+            time.sleep(3)
+            btn_next.click()
+            time.sleep(3)
+
         except Exception as e:
             print(e)
-
-        time.sleep(3)
-        btn_next.click()
-        time.sleep(3)
 
         # entering password
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR,
@@ -143,12 +143,21 @@ class Twitter:
         WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CSS_SELECTOR, post_selector)))
         posts = driver.find_elements(By.CSS_SELECTOR, post_selector)
 
+        no_new_posts = 0
+        posts_len = len(posts)
         while len(posts) < 20:
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(3)
             posts = driver.find_elements(By.CSS_SELECTOR, post_selector)
+            if posts_len == len(posts):
+                no_new_posts+=1
+            if no_new_posts>5:
+                break
+            posts_len = len(posts)
 
-        return posts[:20]
+        if len(posts) > 20:
+            posts = posts[:20]
+        return posts
 
     def relogin(self, driver):
         try:
@@ -309,7 +318,7 @@ def main():
     driver.maximize_window()
     time.sleep(5)
 
-    twitter = Twitter('Your user name', 'Your email', 'password')
+    twitter = Twitter('farjana_samia', 'samiafarjana1743@gmail.com', 'samiarasel')
 
     twitter.login(driver)
 
