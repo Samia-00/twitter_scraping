@@ -5,8 +5,8 @@
 **Install libraries**
 ```sh
  python3 -m venv venv
- bash venv/bin/activate
- pip install requirements.txt
+ . venv/bin/activate
+ pip install -r requirements.txt
 ```
 **Put Twitter credential**
 * Put valid twitter username, email and password to line number 312 of **main.py**
