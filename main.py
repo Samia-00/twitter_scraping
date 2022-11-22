@@ -318,7 +318,7 @@ def main():
     driver.maximize_window()
     time.sleep(5)
 
-    twitter = Twitter('farjana_samia', 'samiafarjana1743@gmail.com', 'samiarasel')
+    twitter = Twitter('Your user name', 'Your email', 'password')
 
     twitter.login(driver)
 
