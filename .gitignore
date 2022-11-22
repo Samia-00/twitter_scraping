@@ -1,0 +1,5 @@
+venv/
+chromedriver_linux64/
+.idea/
+db.docx
+__pycache__/
